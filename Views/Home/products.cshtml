@@ -1,0 +1,73 @@
+﻿
+<!-- start menu -->
+    <link href="~/Content/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Scripts/megamenu.js"></script>
+<script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+    <script src="~/Scripts/menu_jquery.js"></script>
+    <script src="~/Scripts/simpleCart.min.js"> </script>
+    <link href="~/Content/css/form.css" rel="stylesheet" type="text/css" media="all" />
+
+  
+
+
+<!--header//-->
+    @model  List< FurnyishStore.Models.FurnitureTable>
+
+
+<div class="product-model form-group col-md-12">	 
+	 <div class="container">
+			
+         <ol class="breadcrumb">
+		  <li><a href="~/Home/index">Home</a></li>
+		  <li class="active">Products</li>
+		 </ol>
+		
+         	<h2>OUR PRODUCTS</h2>	
+        <div class="row">
+            @foreach (var f in Model)
+            {
+
+                <div class="col-md-3 product-model-sec">
+
+                    <a href="~/Home/single/@f.Id">
+                        <img src=@("../../ProductImages/" + @f.Id + ".jpg") class="img-responsive" alt="" />
+                         <button class="btns">Quick View</button>
+                                
+                    </a>
+
+                    <div class="product-info simpleCart_shelfItem">
+                        <div class="product-info-cust prt_name">
+                            <h4>@f.ItemName</h4>
+                            <p>ID: @f.Id</p>
+                            <span class="item_price">$@f.ItemPrice</span>
+
+                            @if(Session["user"] != null)
+                            { 
+                            <form action="/Home/addToCart" method="post">
+                                <input type="text" class="item_quantity" name="ItemQuantity" value="1" />
+                                <input type="hidden"  name="ItemID" value="@f.Id" />
+                                <input type="hidden" name="ItemType" value="Cart" />
+                                <input type="submit" class="item_add items" value="ADD">
+
+                            </form>
+                            }
+                            
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+     
+     
+		</div>
+</div>	
+<!---->
+
+    <br /><br /><br />
+    <div class="form-group col-md-12">
+
+<!---->
+
+

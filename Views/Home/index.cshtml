@@ -1,0 +1,188 @@
+﻿
+<body>
+
+<!---->
+<div class="content">
+	 <div class="container">
+		 <div class="slider">
+				<ul class="rslides" id="slider1">
+				  <li><img src="~/Images/banner2.jpg" alt=""></li>
+				  <li><img src="~/Images/banner1.jpg" alt=""></li>
+				  <li><img src="~/Images/banner3.jpg" alt=""></li>
+				</ul>
+		 </div>
+	 </div>
+</div>
+<!---->
+<div class="bottom_content">
+	 <div class="container">
+		 <div class="sofas">
+			 <div class="col-md-6 sofa-grid">
+              <img src="~/Images/t1.jpg" alt="" />
+				 <h3>IMPORTED DINING SETS</h3>
+				 <h4><a href="~/Home/products">SPECIAL ACCENTS OFFER</a></h4>
+			 </div>
+			 <div class="col-md-6 sofa-grid sofs">
+              <img src="~/Images/t2.jpg" alt="" />
+				 <h3>SPECIAL DESIGN SOFAS</h3>
+				 <h4><a href="~/Home/products">FABFURNISHING MELA</a></h4>
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>
+<!---->
+
+    @model List<FurnyishStore.Models.DisplayItem>
+<div class="new">
+
+ 
+	 <div class="container">
+		 <h3>specially designed for Furnyish</h3>
+
+	 <div class="new-products">
+@foreach (var d in Model)
+{
+		 <div class="new-items">
+
+
+			 <div class="item1">
+				 <a href="~/Home/products"><img src=@("../../ProductImages/" + @d.FID + ".jpg") alt="" /></a>
+				 <div class="item-info">
+					 <h4><a href="~/Home/single/@d.FID">@d.FurnitureTable.ItemName</a></h4>
+					 <span>ID: @d.FID</span>
+
+					 
+                 @if (Session["user"] != null)
+                 {
+                     <form action="/Home/addToCart" method="post">
+                         <input type="text" class="item_quantity" name="ItemQuantity" value="1" />
+                         <input type="hidden" name="ItemID" value="@d.FID" />
+                         <input type="hidden" name="ItemType" value="Cart" />
+                         <input type="submit" class="item_add items" value="ADD">
+
+                     </form>
+                 }
+
+
+				 </div>
+			 </div>
+
+
+		 <div class="clearfix"></div>	
+		 </div>
+
+         }
+	 </div>		 
+</div>
+
+    
+
+
+
+
+
+
+<!---->
+<div class="top-sellers">
+	 <div class="container">
+		 <h3>TOP - SELLERS</h3>
+		 <div class="seller-grids">
+			 <div class="col-md-3 seller-grid">
+				 <a href="~/Home/products"><img src="~/Images/ts2.jpg" alt="" /></a>
+				 <h4><a href="~/Home/products">Carnival Doublecot Bed</a></h4>
+				 <span>ID: DB4790</span>
+				 <p>Rs. 25000/-</p>
+			 </div>
+			 <div class="col-md-3 seller-grid">
+				 <a href="~/Home/products"><img src="~/Images/ts11.jpg" alt="" /></a>
+				 <h4><a href="~/Home/products">Home Bar Furniture</a></h4>
+				 <span>ID: BR4822</span>
+				 <p>Rs. 5000/-</p>
+			 </div>
+			 <div class="col-md-3 seller-grid">
+				 <a href="~/Home/products"><img src="~/Images/ts3.jpg" alt="" /></a>
+				 <h4><a href="~/Home/products">L-shaped Fabric Sofa set</a></h4>
+				 <span>ID: LF8560</span>
+				 <p>Rs. 45000/-</p>
+			 </div>
+			 <div class="col-md-3 seller-grid">
+				 <a href="~/Home/products"><img src="~/Images/ts4.jpg" alt="" /></a>
+				 <h4><a href="~/Home/products">Ritz Glass Dinning Table </a></h4>
+				 <span>ID: DB4790</span>
+				 <p>Rs. 18000/-</p>
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>
+<!---->
+<div class="recommendation">
+	 <div class="container">
+		 <div class="recmnd-head">
+			 <h3>RECOMMENDATIONS FOR YOU</h3>
+		 </div>
+		 <div class="bikes-grids">			 
+			 <ul id="flexiselDemo1">
+				 <li>
+					 <a href="~/Home/products"><img src="~/Images/ts1.jpg" alt="" /></a>	
+					 <h4><a href="~/Home/products">King Size Bed</a></h4>	
+					 <p>ID: KS3989</p>
+				 </li>
+				 <li>
+					 <a href="~/Home/products"><img src="~/Images/r2.jpg" alt="" /></a>	
+					 <h4><a href="~/Home/products">Elite Diwan Seater</a></h4>	
+					 <p>ID: KS3989</p>
+				 </li>
+				 <li>
+					 <a href="~/Home/products"><img src="~/Images/r3.jpg" alt="" /></a>
+					 <h4><a href="~/Home/products">Dior Corner Sofa</a></h4>	
+					 <p>ID: KS3989</p>
+				 </li>
+				 <li>
+					 <a href="~/Home/products"><img src="~/Images/r4.jpg" alt=""/></a>
+					 <h4><a href="~/Home/products">Alia Modular Sofa</a></h4>	
+					 <p>ID: KS3989</p>
+				 </li>
+				 <li>
+					 <a href="~/Home/products"><img src="~/Images/r5.jpg" alt="" /></a>	
+					 <h4><a href="~/Home/products">King Size Bed</a></h4>	
+					 <p>ID: KS3989</p>					 
+				 </li>
+		    </ul>
+			<script type="text/javascript">
+			 $(window).load(function() {			
+			  $("#flexiselDemo1").flexisel({
+				visibleItems: 5,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,    		
+				pauseOnHover:true,
+				enableResponsiveBreakpoints: true,
+				responsiveBreakpoints: { 
+					portrait: { 
+						changePoint:480,
+						visibleItems: 1
+					}, 
+					landscape: { 
+						changePoint:640,
+						visibleItems: 2
+					},
+					tablet: { 
+						changePoint:768,
+						visibleItems: 3
+					}
+				}
+			});
+			});
+			</script>
+           <script type="text/javascript" src="~/Scripts/jquery.flexisel.js"></script>			 
+	 </div>
+	 </div>
+</div>
+<!---->
+
+</div>
+<!---->
+</body>
+</html>
