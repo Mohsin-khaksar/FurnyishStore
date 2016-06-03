@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="furnyishStoreDB" Class="furnyishStoreModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\furnyishStoreDB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="furnyishStoreDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.furnyishStoreTable" Member="furnyishStoreTables">
+    <Type Name="furnyishStoreTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ConfirmPassword" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FurnitureTable" Member="FurnitureTables">
+    <Type Name="FurnitureTable">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItemPrice" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ItemDescription" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItemType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItemSubType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItemQuantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="FurnitureTable_UserOrder" Member="UserOrders" ThisKey="Id" OtherKey="ItemID" Type="UserOrder" />
+      <Association Name="FurnitureTable_DisplayItem" Member="DisplayItems" ThisKey="Id" OtherKey="FID" Type="DisplayItem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserOrders" Member="UserOrders">
+    <Type Name="UserOrder">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ItemQuantity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FurnitureTable_UserOrder" Member="FurnitureTable" ThisKey="ItemID" OtherKey="Id" Type="FurnitureTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DisplayItems" Member="DisplayItems">
+    <Type Name="DisplayItem">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="FurnitureTable_DisplayItem" Member="FurnitureTable" ThisKey="FID" OtherKey="Id" Type="FurnitureTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

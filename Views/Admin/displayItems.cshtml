@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "displayItems";
+}
+
+<h2>displayItems</h2>
+
+@{Layout = null;  }
+
+
+<div class="container">
+
+    <div class="registration">
+        
+        <div class="registration_left">
+
+            @model  List<FurnyishStore.Models.DisplayItem>
+
+            <h2>List of Display Items Items</h2>
+            <table>
+                <tr>
+                    <td> <b> ItemID  </b></td>
+                    <td> <b> ItemName  </b> </td>
+                    <td> <b> ItemPrice </b> </td>
+                    <td>  <b> ItemDescription </b> </td>
+                    <td> <b> ItemType  </b></td>
+                    <td> <b>ItemSubType </b></td>
+                    <td> <b> ItemQuantity  </b></td>
+                </tr>
+
+                @foreach (var s in Model)
+                {
+                    <tr>
+                        <td>@s.Id</td>
+                        <td>@s.FurnitureTable.ItemName</td>
+                        <td>@s.FurnitureTable.ItemPrice</td>
+                        <td>@s.FurnitureTable.ItemDescription </td>
+                        <td>@s.FurnitureTable.ItemType </td>
+                        <td>@s.FurnitureTable.ItemSubType </td>
+                        <td>@s.FurnitureTable.ItemQuantity </td>
+
+                        <td>
+                            <a href="/Admin/DeleteDisplayItem/@s.Id">Delete DisplayItems</a>
+                            
+                        </td>
+                    </tr>
+                }
+            </table>

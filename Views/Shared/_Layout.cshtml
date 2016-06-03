@@ -1,0 +1,723 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @using FurnyishStore.Models
+
+
+    <title>Furnyish Store a Ecommerce Category Flat Bootstarp Responsive Website Template | Home :: w3layouts</title>
+    <link href="~/Content/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery (necessary JavaScript plugins) -->
+    <script type='text/javascript' src="~/Scripts/jquery-1.11.1.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="~/Content/css/style.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <!--//theme-style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Furnyish Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat|Raleway:400,200,300,500,600,700,800,900,100' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Aladin' rel='stylesheet' type='text/css'>
+    <!-- start menu -->
+    <link href="~/Content/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/Scripts/megamenu.js"></script>
+    <script>$(document).ready(function () { $(".megamenu").megamenu(); });</script>
+    <script src="~/Scripts/menu_jquery.js"></script>
+    <script src="~/Scripts/simpleCart.min.js"> </script>
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+            // Slideshow 1
+            $("#slider1").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+
+    <!-- header -->
+    @if(Session["user"] != null)
+    {
+    <div class="top_bg">
+        <div class="container">
+            <div class="header_top-sec">
+                <div class="top_right">
+                    <ul>
+                        <li><a href="#">help</a></li>|
+                        <li><a href="/Home/contact">Contact</a></li>|
+                        <li><a href="~/Home/login">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="top_left">
+                   @{
+                        furnyishStoreTable f = (furnyishStoreTable)Session["user"];
+                     }
+                    <ul>
+                        <li class="top_link">Email:@f.Email</li>|
+                        <li class="top_link"><a href="~/Home/login">My Account</a></li>|
+                    </ul>
+                    <div class="social">
+                        <ul>
+                            <li><a href="http://www.facebook.com"><i class="facebook"></i></a></li>
+                            <li><a href="http://www.twitter.com"><i class="twitter"></i></a></li>
+                            <li><a href="http://www.dribble.com"><i class="dribble"></i></a></li>
+                            <li><a href="http://www.google.com"><i class="google"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    }
+    
+        <div class="header_top">
+        <div class="container">
+            <div class="logo">
+                <a href="~/Home/index"><img src="~/Images/logo.png" alt="" /></a>
+            </div>
+            <div class="header_right">
+                <div class="login">
+
+                    @if(Session["user"] == null)
+                    { 
+                    <a href="~/Home/login">LOGIN</a>
+                    }
+                   else
+                    {
+                        <a href="~/Home/logout">LOG OUT</a>
+                    }
+                </div>
+
+                @if(Session["user"] != null)
+                { 
+                <div class="cart box_1">
+                    <a href="~/Home/cart">
+                        <h3> <span>$ @ViewBag.finalSum</span> 
+                        (<span >@ViewBag.totalQuantity</span> items)
+                        <img src="~/Images/bag.png" alt=""></h3>
+                    </a>
+                    <p><a href="javascript:;" class="simpleCart_empty">Empty cart</a></p>
+                    <div class="clearfix"> </div>
+                </div>
+                }
+                
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!--cart-->
+    <!------>
+    <div class="mega_nav">
+        <div class="container">
+            <div class="menu_sec">
+                <!-- start header menu -->
+                <ul class="megamenu skyblue">
+                    <li class="active grid"><a class="color1" href="~/Home/index">Home</a></li>
+                    <li class="grid">
+                        <a class="color2" href="#">furniture</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sofas</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">All Sofas</a></li>
+                                            <li><a href="~/Home/products/?search=Fabric Sofas">Fabric Sofas</a></li>
+                                            <li><a href="~/Home/products/?search=Leather Sofas">Leather Sofas</a></li>
+                                            <li><a href="~/Home/products/?search=L-shaped Sofas">L-shaped Sofas</a></li>
+                                            <li><a href="~/Home/products/?search=Love Seats">Love Seats</a></li>
+                                            <li><a href="~/Home/products/?search=Wooden Sofas">Wooden Sofas</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Tables</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products/?search=Coffee Tables">Coffee Tables</a></li>
+                                            <li><a href="~/Home/products/?search=Dinning Tables">Dinning Tables</a></li>
+                                            <li><a href="~/Home/products/?search=Study Tables">Study Tables</a></li>
+                                            <li><a href="~/Home/products/?search=Wooden Tables">Wooden Tables</a></li>
+                                            <li><a href="~/Home/products/?search=Study Tables">Study Tables</a></li>
+                                            <li><a href="~/Home/products/?search=Bar & Unit Stools">Bar & Unit Stools</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Beds</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products/?search=Single Bed">Single Bed</a></li>
+                                            <li><a href="~/Home/products/?search=Poster Bed">Poster Bed</a></li>
+                                            <li><a href="~/Home/products/?search=Sofa Cum Bed">Sofa Cum Bed</a></li>
+                                            <li><a href="~/Home/products/?search=Bunk Bed">Bunk Bed</a></li>
+                                            <li><a href="~/Home/products/?search=King Size Bed">King Size Bed</a></li>
+                                            <li><a href="~/Home/products/?search=Metal Bed">Metal Bed</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Seating</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products/?search=Wing Chair">Wing Chair</a></li>
+                                            <li><a href="~/Home/products/?search=Accent Chair">Accent Chair</a></li>
+                                            <li><a href="~/Home/products/?search=Arm Chair">Arm Chair</a></li>
+                                            <li><a href="~/Home/products/?search=Mettal Chair">Mettal Chair</a></li>
+                                            <li><a href="~/Home/products/?search=Folding Chair">Folding Chair</a></li>
+                                            <li><a href="~/Home/products/?search=Bean Bags">Bean Bags</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Solid Woods</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products/?search=Side Tables">Side Tables</a></li>
+                                            <li><a href="~/Home/products/?search=T.v Units">T.v Units</a></li>
+                                            <li><a href="~/Home/products/?search=Dressing Tables">Dressing Tables</a></li>
+                                            <li><a href="~/Home/products/?search=Wardrobes">Wardrobes</a></li>
+                                            <li><a href="~/Home/products/?search=Shoe Racks">Shoe Racks</a></li>
+                                            <li><a href="~/Home/products/?search=Console Tables">Console Tables</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col2"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="color4" href="#">living</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sofas</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">All Sofas</a></li>
+                                            <li><a href="~/Home/products">Fabric Sofas</a></li>
+                                            <li><a href="~/Home/products">Leather Sofas</a></li>
+                                            <li><a href="~/Home/products">L-shaped Sofas</a></li>
+                                            <li><a href="~/Home/products">Love Seats</a></li>
+                                            <li><a href="~/Home/products">Wooden Sofas</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Tables</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Coffee Tables</a></li>
+                                            <li><a href="~/Home/products">Dinning Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Wooden Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Bar & Unit Stools</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Beds</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Single Bed</a></li>
+                                            <li><a href="~/Home/products">Poster Bed</a></li>
+                                            <li><a href="~/Home/products">Sofa Cum Bed</a></li>
+                                            <li><a href="~/Home/products">Bunk Bed</a></li>
+                                            <li><a href="~/Home/products">King Size Bed</a></li>
+                                            <li><a href="~/Home/products">Metal Bed</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Seating</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Wing Chair</a></li>
+                                            <li><a href="~/Home/products">Accent Chair</a></li>
+                                            <li><a href="~/Home/products">Arm Chair</a></li>
+                                            <li><a href="~/Home/products">Mettal Chair</a></li>
+                                            <li><a href="~/Home/products">Folding Chair</a></li>
+                                            <li><a href="~/Home/products">Bean Bags</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Solid Woods</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Side Tables</a></li>
+                                            <li><a href="~/Home/products">T.v Units</a></li>
+                                            <li><a href="~/Home/products">Dressing Tables</a></li>
+                                            <li><a href="~/Home/products">Wardrobes</a></li>
+                                            <li><a href="~/Home/products">Shoe Racks</a></li>
+                                            <li><a href="~/Home/products">Console Tables</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col2"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="color5" href="#">kitchen & dinning</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sofas</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">All Sofas</a></li>
+                                            <li><a href="~/Home/products">Fabric Sofas</a></li>
+                                            <li><a href="~/Home/products">Leather Sofas</a></li>
+                                            <li><a href="~/Home/products">L-shaped Sofas</a></li>
+                                            <li><a href="~/Home/products">Love Seats</a></li>
+                                            <li><a href="~/Home/products">Wooden Sofas</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Tables</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Coffee Tables</a></li>
+                                            <li><a href="~/Home/products">Dinning Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Wooden Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Bar & Unit Stools</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Beds</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Single Bed</a></li>
+                                            <li><a href="~/Home/products">Poster Bed</a></li>
+                                            <li><a href="~/Home/products">Sofa Cum Bed</a></li>
+                                            <li><a href="~/Home/products">Bunk Bed</a></li>
+                                            <li><a href="~/Home/products">King Size Bed</a></li>
+                                            <li><a href="~/Home/products">Metal Bed</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Seating</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Wing Chair</a></li>
+                                            <li><a href="~/Home/products">Accent Chair</a></li>
+                                            <li><a href="~/Home/products">Arm Chair</a></li>
+                                            <li><a href="~/Home/products">Mettal Chair</a></li>
+                                            <li><a href="~/Home/products">Folding Chair</a></li>
+                                            <li><a href="~/Home/products">Bean Bags</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Solid Woods</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Side Tables</a></li>
+                                            <li><a href="~/Home/products">T.v Units</a></li>
+                                            <li><a href="~/Home/products">Dressing Tables</a></li>
+                                            <li><a href="~/Home/products">Wardrobes</a></li>
+                                            <li><a href="~/Home/products">Shoe Racks</a></li>
+                                            <li><a href="~/Home/products">Console Tables</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col2"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="color6" href="#">appliances</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sofas</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">All Sofas</a></li>
+                                            <li><a href="~/Home/products">Fabric Sofas</a></li>
+                                            <li><a href="~/Home/products">Leather Sofas</a></li>
+                                            <li><a href="~/Home/products">L-shaped Sofas</a></li>
+                                            <li><a href="~/Home/products">Love Seats</a></li>
+                                            <li><a href="~/Home/products">Wooden Sofas</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Tables</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Coffee Tables</a></li>
+                                            <li><a href="~/Home/products">Dinning Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Wooden Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Bar & Unit Stools</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Beds</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Single Bed</a></li>
+                                            <li><a href="~/Home/products">Poster Bed</a></li>
+                                            <li><a href="~/Home/products">Sofa Cum Bed</a></li>
+                                            <li><a href="~/Home/products">Bunk Bed</a></li>
+                                            <li><a href="~/Home/products">King Size Bed</a></li>
+                                            <li><a href="~/Home/products">Metal Bed</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Seating</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Wing Chair</a></li>
+                                            <li><a href="~/Home/products">Accent Chair</a></li>
+                                            <li><a href="~/Home/products">Arm Chair</a></li>
+                                            <li><a href="~/Home/products">Mettal Chair</a></li>
+                                            <li><a href="~/Home/products">Folding Chair</a></li>
+                                            <li><a href="~/Home/products">Bean Bags</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Solid Woods</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Side Tables</a></li>
+                                            <li><a href="~/Home/products">T.v Units</a></li>
+                                            <li><a href="~/Home/products">Dressing Tables</a></li>
+                                            <li><a href="~/Home/products">Wardrobes</a></li>
+                                            <li><a href="~/Home/products">Shoe Racks</a></li>
+                                            <li><a href="~/Home/products">Console Tables</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col2"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a class="color7" href="#">decor</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sofas</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">All Sofas</a></li>
+                                            <li><a href="~/Home/products">Fabric Sofas</a></li>
+                                            <li><a href="~/Home/products">Leather Sofas</a></li>
+                                            <li><a href="~/Home/products">L-shaped Sofas</a></li>
+                                            <li><a href="~/Home/products">Love Seats</a></li>
+                                            <li><a href="~/Home/products">Wooden Sofas</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Tables</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Coffee Tables</a></li>
+                                            <li><a href="~/Home/products">Dinning Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Wooden Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Bar & Unit Stools</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Beds</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Single Bed</a></li>
+                                            <li><a href="~/Home/products">Poster Bed</a></li>
+                                            <li><a href="~/Home/products">Sofa Cum Bed</a></li>
+                                            <li><a href="~/Home/products">Bunk Bed</a></li>
+                                            <li><a href="~/Home/products">King Size Bed</a></li>
+                                            <li><a href="~/Home/products">Metal Bed</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Seating</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Wing Chair</a></li>
+                                            <li><a href="~/Home/products">Accent Chair</a></li>
+                                            <li><a href="~/Home/products">Arm Chair</a></li>
+                                            <li><a href="~/Home/products">Mettal Chair</a></li>
+                                            <li><a href="~/Home/products">Folding Chair</a></li>
+                                            <li><a href="~/Home/products">Bean Bags</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Solid Woods</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Side Tables</a></li>
+                                            <li><a href="~/Home/products">T.v Units</a></li>
+                                            <li><a href="~/Home/products">Dressing Tables</a></li>
+                                            <li><a href="~/Home/products">Wardrobes</a></li>
+                                            <li><a href="~/Home/products">Shoe Racks</a></li>
+                                            <li><a href="~/Home/products">Console Tables</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col2"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a class="color8" href="#">kids</a>
+                        <div class="megapanel">
+                            <div class="row">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Sofas</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">All Sofas</a></li>
+                                            <li><a href="~/Home/products">Fabric Sofas</a></li>
+                                            <li><a href="~/Home/products">Leather Sofas</a></li>
+                                            <li><a href="~/Home/products">L-shaped Sofas</a></li>
+                                            <li><a href="~/Home/products">Love Seats</a></li>
+                                            <li><a href="~/Home/products">Wooden Sofas</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Tables</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Coffee Tables</a></li>
+                                            <li><a href="~/Home/products">Dinning Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Wooden Tables</a></li>
+                                            <li><a href="~/Home/products">Study Tables</a></li>
+                                            <li><a href="~/Home/products">Bar & Unit Stools</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Beds</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Single Bed</a></li>
+                                            <li><a href="~/Home/products">Poster Bed</a></li>
+                                            <li><a href="~/Home/products">Sofa Cum Bed</a></li>
+                                            <li><a href="~/Home/products">Bunk Bed</a></li>
+                                            <li><a href="~/Home/products">King Size Bed</a></li>
+                                            <li><a href="~/Home/products">Metal Bed</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Seating</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Wing Chair</a></li>
+                                            <li><a href="~/Home/products">Accent Chair</a></li>
+                                            <li><a href="~/Home/products">Arm Chair</a></li>
+                                            <li><a href="~/Home/products">Mettal Chair</a></li>
+                                            <li><a href="~/Home/products">Folding Chair</a></li>
+                                            <li><a href="~/Home/products">Bean Bags</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Solid Woods</h4>
+                                        <ul>
+                                            <li><a href="~/Home/products">Side Tables</a></li>
+                                            <li><a href="~/Home/products">T.v Units</a></li>
+                                            <li><a href="~/Home/products">Dressing Tables</a></li>
+                                            <li><a href="~/Home/products">Wardrobes</a></li>
+                                            <li><a href="~/Home/products">Shoe Racks</a></li>
+                                            <li><a href="~/Home/products">Console Tables</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col2"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                                <div class="col1"></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="search">
+                    <form action="/Home/products">
+                        <input type="text" name="search" placeholder="Search...">
+                        <input type="submit" value="">
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+
+    <div class="footer-content">
+        <div class="container">
+            <div class="ftr-grids">
+                <div class="col-md-3 ftr-grid">
+                    <h4>About Us</h4>
+                    <ul>
+                        <li><a href="#">Who We Are</a></li>
+                        <li><a href="~/Home/contact">Contact Us</a></li>
+                        <li><a href="#">Our Sites</a></li>
+                        <li><a href="#">In The News</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Carrers</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 ftr-grid">
+                    <h4>Customer service</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Cancellation</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Bulk Orders</a></li>
+                        <li><a href="#">Buying Guides</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 ftr-grid">
+                    <h4>Your account</h4>
+                    <ul>
+                        <li><a href="~/Home/account">Your Account</a></li>
+                        <li><a href="#">Personal Information</a></li>
+                        <li><a href="#">Addresses</a></li>
+                        <li><a href="#">Discount</a></li>
+                        <li><a href="#">Track your order</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 ftr-grid">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">> Furinture</a></li>
+                        <li><a href="#">> Bean Bags</a></li>
+                        <li><a href="#">> Decor</a></li>
+                        <li><a href="#">> Kichen & Dinning</a></li>
+                        <li><a href="#">> Bed & Bath</a></li>
+                        <li><a href="#">...More</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="footer">
+        <div class="container">
+            <div class="store">
+                <ul>
+                    <li class="active">OUR STORE LOCATOR::</li>
+                    <li><a href="#">Noida</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Belgium</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">China</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Germany</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Japan</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Armenia</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">South Africa</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Malaysia</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Indonesia</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Mumbai</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Portugal</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Spain</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Northern Ireland</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Mohali</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Gurgaon</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Panchkula</a></li>
+                    <li><a href="#">|</a></li>
+                    <li><a href="#">Ambala</a></li>
+                </ul>
+            </div>
+            <div class="copywrite">
+                <p>Copyright © 2015 Furnyish Store All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+            </div>
+        </div>
+    </div>
+
+   
+    @RenderSection("scripts", required: false)
+</body>
+</html>
